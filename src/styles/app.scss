@@ -1,28 +1,50 @@
 @import "./_variables";
 
-section {
-    width: 500px;
+.section__scroll {
+    width: 50rem;
     height: 100vh;
     margin: 0 auto;
-    padding-top: 21px;
+    padding: 3.3rem 0;
+
+    .a11y {
+        position: absolute;
+        overflow: hidden;
+        border: 0;
+        width: 1px;
+        height: 1px;
+        clip: rect(1px, 1px, 1px, 1px);
+    }
 }
 
-.scroll__box {
-    font-size: 18px;
+.comment {
+    font-size: $fontSize_base;
     color: $black-text;
     background-color: $light-gray-bg;
-    border: 0.5px solid $light-gray-border;
+    border: 0.05rem solid $light-gray-border;
     border-radius: $padding;
     padding: $padding;
-    margin-top: $margin;
 
-    .comment__title {
-        font-weight: 600;
-        margin-right: $margin;
+    &:not(:last-child) {
+        margin-bottom: $margin;
     }
 
-    .comment__mail,
-    .comment__content {
-        margin-top: $margin;
+    .comment__info {
+        display: flex;
+        margin-bottom: $margin;
+
+        .comment__title {
+            font-weight: 600;
+            margin-right: $margin;
+        }
+
+        &:last-child {
+            flex-direction: column;
+            margin-bottom: 0;
+
+            .comment__title {
+                margin-right: 0;
+                margin-bottom: 0.02rem;
+            }
+        }
     }
 }
