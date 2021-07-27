@@ -1,8 +1,8 @@
-import React from "react";
+import React, {forwardRef} from "react";
 
-function Comment({ id, email, body }) {
+const Comment = forwardRef(({ id, email, body }, ref) => {
     return (
-        <div className="scroll__box">
+        <div className="scroll__box" ref={ref}>
             <div className="comment__info">
                 <span className="comment__title">Comment Id</span>
                 <span className="comment__id">{id}</span>
@@ -17,6 +17,6 @@ function Comment({ id, email, body }) {
             </div>
         </div>
     );
-}
+})
 
 export default Comment;
