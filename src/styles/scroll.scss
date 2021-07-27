@@ -1,0 +1,28 @@
+@import "./_variables";
+
+section {
+    width: 500px;
+    height: 100vh;
+    margin: 0 auto;
+    padding-top: 21px;
+}
+
+.scroll__box {
+    font-size: 18px;
+    color: $black-text;
+    background-color: $light-gray-bg;
+    border: 0.5px solid $light-gray-border;
+    border-radius: $padding;
+    padding: $padding;
+    margin-top: $margin;
+
+    .comment__title {
+        font-weight: 600;
+        margin-right: $margin;
+    }
+
+    .comment__mail,
+    .comment__content {
+        margin-top: $margin;
+    }
+}
