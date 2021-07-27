@@ -1,9 +1,22 @@
-import "./styles/style.scss";
+import React from 'react';
 
-function App() {
+import "styles/style.scss";
+import UserCommentItem from "components/user-comment-item";
+
+export default function App() {
     return (
-      <div className="App"></div>
+      <main id="main">
+        <section className="comment-section">
+          <ul className="comment-list">
+            <UserCommentItem />
+            <UserCommentItem />
+            <UserCommentItem />
+            <UserCommentItem />
+            <UserCommentItem />
+            <UserCommentItem />
+          </ul>
+        </section>
+      </main>
     );
 }
 
-export default App;

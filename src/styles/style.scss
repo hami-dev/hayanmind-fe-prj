@@ -1,4 +1,11 @@
-body {
-    background-color: #000;
-    color: #fff;
+.comment-section {
+  width: 100%;
+  padding: 3.3rem 0;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  width: 50rem;
+  margin: 0 auto;
 }
