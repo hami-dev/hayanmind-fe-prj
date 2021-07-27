@@ -1,50 +1,36 @@
-import React, { useState, useEffect, useRef } from 'react';
-
+import React from "react";
 import "styles/app.scss";
 import Comment from "components/comment";
-import { getComment } from 'api';
+import useGetComment from "hooks/useGetComment";
+import useObserver from "hooks/useObserver";
 
 export default function App() {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [comments, setComments] = useState([]);
-  const triggerRef = useRef(null);
-
-  useEffect(() => {
-    console.log('page',page);
-    getComment(page, limit)
-      .then(res => {
-        setComments((comments) => [...comments, ...res]);
-      });
-  },[page, limit]);
-
-  useEffect( () => {
-    if (triggerRef.current) {
-      const fetchMoreObserver = new IntersectionObserver(([{isIntersecting}]) => {
-        if(isIntersecting) {
-          setPage((page) => page + 1);
-        }
-      });
-      fetchMoreObserver.observe(triggerRef.current);
-    }
-
-  },[triggerRef]);
+    const { comments, IncreasePage } = useGetComment();
+    const { triggerRef } = useObserver(IncreasePage, comments);
 
     return (
         <section className="section__scroll">
-            {
-              comments.map((comment, idx) => {
-                const lastEl = idx === comments.length - 1;
-                return <Comment
-                  key={comment.id}
-                  id={comment.id}
-                  name={comment.name}
-                  body={comment.body}
-                  ref={lastEl ? triggerRef : null}
-                />
-              })
-            }
+            <h1 className="a11y">Assignment 1</h1>
+            <ul className="comment-list">
+                {comments.map((comment, idx) =>
+                    idx === comment.length - 1 ? (
+                        <Comment
+                            key={comment.id}
+                            id={comment.id}
+                            email={comment.email}
+                            body={comment.body}
+                        />
+                    ) : (
+                        <Comment
+                            key={comment.id}
+                            id={comment.id}
+                            email={comment.email}
+                            body={comment.body}
+                            ref={triggerRef}
+                        />
+                    )
+                )}
+            </ul>
         </section>
     );
 }
-
